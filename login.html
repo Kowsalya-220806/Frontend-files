@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login | SkillForge</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+/* BACKGROUND SLIDER */
+.bg-slider{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+.bg-slide{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+transition:1s;
+}
+
+.bg-active{opacity:0.7;}
+
+/* CARD */
+.container{
+width:420px;
+background:white;
+padding:40px;
+border-radius:15px;
+box-shadow:0 15px 40px rgba(0,0,0,0.3);
+animation:fade 0.6s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+h2{margin-bottom:20px;text-align:center;}
+
+input{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#2563eb;
+color:white;
+cursor:pointer;
+margin-bottom:10px;
+transition:0.3s;
+}
+
+button:hover{background:#1d4ed8;}
+
+.google{
+background:white;
+color:#444;
+border:1px solid #ddd;
+}
+
+.link{
+text-align:center;
+color:#2563eb;
+cursor:pointer;
+font-size:14px;
+margin-top:5px;
+}
+
+.hidden{display:none;}
+</style>
+</head>
+<body>
+
+<!-- PROFESSIONAL AI BACKGROUND IMAGES -->
+<div class="bg-slider">
+<img class="bg-slide bg-active" src="https://images.unsplash.com/photo-1581091012184-5c77e4c79f3b?auto=format&fit=crop&w=1600&q=80">
+<img class="bg-slide" src="https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=1600&q=80">
+<img class="bg-slide" src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1600&q=80">
+</div>
+
+<div class="container">
+
+<!-- LOGIN FORM -->
+<div id="loginForm">
+<h2>Sign In</h2>
+<input type="email" placeholder="Email">
+<input type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+<button class="google">Sign in with Google</button>
+<div class="link" onclick="showForgot()">Forgot Password?</div>
+<div class="link" onclick="showRegister()">Create Account</div>
+</div>
+
+<!-- REGISTER FORM -->
+<div id="registerForm" class="hidden">
+<h2>Create Account</h2>
+<input type="text" placeholder="Full Name">
+<input type="email" placeholder="Email">
+<input type="tel" placeholder="Phone Number">
+<input type="password" placeholder="Password">
+<button>Create Account</button>
+<div class="link" onclick="showLogin()">Already have an account?</div>
+</div>
+
+<!-- FORGOT PASSWORD -->
+<div id="forgotForm" class="hidden">
+<h2>Reset Password</h2>
+<input type="text" placeholder="Enter Email or Phone">
+<button onclick="sendOTP()">Send OTP</button>
+<div class="link" onclick="showLogin()">Back to Login</div>
+</div>
+
+<!-- OTP VERIFICATION -->
+<div id="otpForm" class="hidden">
+<h2>Enter OTP</h2>
+<input type="text" placeholder="Enter 6-digit OTP">
+<button onclick="showReset()">Verify OTP</button>
+</div>
+
+<!-- NEW PASSWORD -->
+<div id="resetForm" class="hidden">
+<h2>Set New Password</h2>
+<input type="password" placeholder="New Password">
+<input type="password" placeholder="Confirm Password">
+<button onclick="showLogin()">Reset Password</button>
+</div>
+
+</div>
+
+<script>
+
+/* Background slider */
+let bg=document.querySelectorAll(".bg-slide");
+let i=0;
+setInterval(()=>{
+bg[i].classList.remove("bg-active");
+i=(i+1)%bg.length;
+bg[i].classList.add("bg-active");
+},4000);
+
+/* Navigation functions */
+function showLogin(){
+hideAll();
+document.getElementById("loginForm").classList.remove("hidden");
+}
+
+function showRegister(){
+hideAll();
+document.getElementById("registerForm").classList.remove("hidden");
+}
+
+function showForgot(){
+hideAll();
+document.getElementById("forgotForm").classList.remove("hidden");
+}
+
+function sendOTP(){
+hideAll();
+document.getElementById("otpForm").classList.remove("hidden");
+}
+
+function showReset(){
+hideAll();
+document.getElementById("resetForm").classList.remove("hidden");
+}
+
+function hideAll(){
+document.getElementById("loginForm").classList.add("hidden");
+document.getElementById("registerForm").classList.add("hidden");
+document.getElementById("forgotForm").classList.add("hidden");
+document.getElementById("otpForm").classList.add("hidden");
+document.getElementById("resetForm").classList.add("hidden");
+}
+
+function login(){
+window.location.href="dashboard.html";
+}
+
+</script>
+
+</body>
+</html>
